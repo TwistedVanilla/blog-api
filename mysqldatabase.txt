@@ -1,0 +1,77 @@
+-- phpMyAdmin SQL Dump
+-- version 4.4.10
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost:8889
+-- Generation Time: Mar 13, 2016 at 12:21 PM
+-- Server version: 5.5.42
+-- PHP Version: 7.0.0
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `twisted_vanilla`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `BlogPost`
+--
+
+CREATE TABLE `BlogPost` (
+  `postID` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` varchar(1000) NOT NULL,
+  `dateMade` varchar(1000) NOT NULL,
+  `creatorID` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `User`
+--
+
+CREATE TABLE `User` (
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `BlogPost`
+--
+ALTER TABLE `BlogPost`
+  ADD PRIMARY KEY (`postID`),
+  ADD KEY `creatorID` (`creatorID`);
+
+--
+-- Indexes for table `User`
+--
+ALTER TABLE `User`
+  ADD PRIMARY KEY (`username`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `BlogPost`
+--
+ALTER TABLE `BlogPost`
+  MODIFY `postID` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `BlogPost`
+--
+ALTER TABLE `BlogPost`
+  ADD CONSTRAINT `blogpost_ibfk_1` FOREIGN KEY (`creatorID`) REFERENCES `User` (`username`);
