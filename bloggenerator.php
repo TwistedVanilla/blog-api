@@ -40,7 +40,7 @@
                 $this->description = $row['description'];
                 $this->dateMade = $row['blogDateMade'];
                 
-                printPostSection($row['blogID']);
+                $this->printPostSection($row['blogID']);
                 break;
             }
         }
@@ -56,8 +56,8 @@
                 $errorFound = false;
                 $error = "";
                 
-                $title = process_user_inputted_text($_POST["title"]);
-                $post = process_user_inputted_text($_POST["post"]);
+                $title = $this->processUserInputtedText($_POST["title"]);
+                $post = $this->processUserInputtedText($_POST["post"]);
                 $dateMade = date("Y-m-d H:i:s");
                 
                 if (!empty($post)) {
@@ -109,6 +109,12 @@
         
         private function postNewBlogPost($title, $description, $date, $creatorID) {
             $db->exec("INSERT INTO BlogPost(title, description, dateMade, creatorID) VALUES ($title, $description, $date, $creatorID)");
+        }
+        
+        private function processUserInputtedText($text) {
+            $text = trim($text);
+            $text = htmlspecialchars($text);
+            return $text;
         }
     }
 ?>
