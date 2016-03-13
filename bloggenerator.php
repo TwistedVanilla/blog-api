@@ -96,6 +96,7 @@
         private function generateEditPostSection($title) {
             $postTitle = "$title"."_post";
             print("<section class='$title_post'>");
+            print("<h1>$title a new blog post!</h1>");
             print('<form method="post" '); 
             print("action=".htmlspecialchars("$_SERVER[PHP_SELF]"));
             print('>');
